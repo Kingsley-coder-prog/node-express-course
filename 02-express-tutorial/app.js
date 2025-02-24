@@ -28,6 +28,11 @@ app.get("/api/products/:productID", (req, res) => {
   return res.json(singleProduct);
 });
 
+app.get("/api/products/:productID/reviews/:reviewsID", (req, res) => {
+  console.log(req.params);
+  res.send("Hello World");
+});
+
 app.listen(5000, () => {
   console.log("Server is listening on port 5000...");
 });
