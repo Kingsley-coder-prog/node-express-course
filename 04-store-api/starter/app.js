@@ -1,5 +1,5 @@
-// const { getAllProductsStatic } = require("./controllers/products");
 require("dotenv").config();
+require("express-async-errors");
 
 // async errors
 
