@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const sgMail = require("@sendgrid/mail");
 
 const sendEmail = async (req, res) => {
   let testAccount = await nodemailer.createTestAccount();
@@ -19,5 +20,12 @@ const sendEmail = async (req, res) => {
   });
   res.json(info);
 };
+
+// const sendEmail = async (req,res) => {
+//     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//     const msg = {
+//         to: ''
+//     }
+// }
 
 module.exports = sendEmail;
