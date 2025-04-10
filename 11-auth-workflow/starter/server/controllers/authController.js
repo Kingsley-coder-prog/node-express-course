@@ -36,11 +36,22 @@ const register = async (req, res) => {
 const verifyEmail = async (req, res) => {
   const { email, verificationToken } = req.body;
 
-  if (!email || !verificationToken) {
-    throw new CustomError.BadRequestError("Pleas verify your email");
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new CustomError.UnauthenticatedError("Verification Failed");
   }
 
-  res.status(StatusCodes.OK).json({ email, verificationToken });
+  if (user.verificationToken !== verificationToken) {
+    throw new CustomError.UnauthenticatedError("Verification Failed");
+  }
+
+  user.isVerified = true;
+  user.veirfied = Date.now();
+  user.verificationToken = "";
+
+  await user.save();
+
+  res.status(StatusCodes.OK).json({ msg: "Email Verified" });
 };
 
 const login = async (req, res) => {
