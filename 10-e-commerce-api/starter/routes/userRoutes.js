@@ -13,7 +13,9 @@ const {
   updateUserPassword,
 } = require("../controllers/userController");
 
-router.route("/").get(authenticateUser, authroizePermissions, getAllUsers);
+router
+  .route("/")
+  .get(authenticateUser, authroizePermissions("admin"), getAllUsers);
 
 router.route("/showMe").get(showCurrentUser);
 router.route("/updateUser").patch(updateUser);
