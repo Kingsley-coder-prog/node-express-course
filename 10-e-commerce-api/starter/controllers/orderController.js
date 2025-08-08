@@ -8,7 +8,7 @@ const getSingleOrder = async (req, res) => {
   res.send("get single order");
 };
 const getCurrentUserOrders = async (req, res) => {
-  res.send("cget current user orders");
+  res.send("get current user orders");
 };
 const updateOrder = async (req, res) => {
   res.send("update order");
